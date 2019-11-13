@@ -1,6 +1,7 @@
 import React from 'react';
 import { CityList, City, CityTitle, CityWeather } from "../styles/custom.js";
 import ForecastService from "../services/ForecastService.js";
+import { Link } from 'react-router-dom';
 
 class Cities extends React.Component {
   constructor (props) {
@@ -31,14 +32,16 @@ class Cities extends React.Component {
         this.state.cities.length > 0 ? (
           this.state.cities.map((city) => {
             return (
-              <City key={city.name}>
-                <CityTitle>{city.name}</CityTitle>
-                <CityWeather>
-                  <img src={"http://openweathermap.org/img/wn/"+city.weather.icon+"@2x.png"} alt={city.weather.main}/>
-                  <h3>{city.weather.main}</h3>
-                  <p>{city.weather.description}</p>
-                </CityWeather>
-              </City>
+              <Link to={"/city/" + city.name} key={city.name}>
+                <City>
+                  <CityTitle>{city.name}</CityTitle>
+                  <CityWeather>
+                    <img src={"http://openweathermap.org/img/wn/"+city.weather.icon+"@2x.png"} alt={city.weather.main}/>
+                    <h3>{city.weather.main}</h3>
+                    <p>{city.weather.description}</p>
+                  </CityWeather>
+                </City>
+              </Link>
             )
           }, this)
         ) : (

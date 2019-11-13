@@ -5,7 +5,8 @@ module.exports = {
   entry: './app/index.jsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'index_boundle.js'
+    filename: 'index_boundle.js',
+    publicPath: '/'
   },
   module: {
     rules: [
@@ -21,6 +22,9 @@ module.exports = {
     ]
   },
   mode: 'development',
+  devServer: {
+    historyApiFallback: true,
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: 'app/public/index.html'

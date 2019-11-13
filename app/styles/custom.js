@@ -15,6 +15,10 @@ export const CityTitle = styled('h2')`
   color: coral;
 `;
 
+export const DetailCityTitle = styled('h1')`
+  color: coral;
+`;
+
 export const CityList = styled('div')`
   display: flex;
   flex-direction: row;
@@ -35,6 +39,22 @@ export const City = styled('div')`
   background-color: aliceblue;
   margin: 10px;
   border-radius: 2px;
+`;
+
+export const CityDetail = styled('div')`
+  width: 20vw;
+  min-width: 200px;
+  min-height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-size: 20px;
+  background-color: aliceblue;
+  margin: 10px;
+  border-radius: 2px;
+  padding: 20px;
+  text-align: center;
 `;
 
 export const CityWeather = styled('div')`

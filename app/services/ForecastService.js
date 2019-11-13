@@ -23,6 +23,11 @@ class ForecastService {
     return citiesData;
   }
 
+  static async getCityWeather(cityName) {
+    const city = Constants.TARGETCITIES.filter(city => city.name === cityName);
+    return await this.getCityForecastData(city[0]);
+  }
+
   static async getCityForecastData(city) {
     try {
       let call = 'https://api.openweathermap.org/data/2.5/weather?lat=' + city.latitude + '&lon=' + city.longitude + '&appid=' + Constants.APIKEY;
