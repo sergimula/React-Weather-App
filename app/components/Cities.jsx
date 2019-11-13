@@ -1,6 +1,4 @@
 import React from 'react';
-import * as Constants from '../constants/';
-import axios from 'axios';
 import { CityList, City, CityTitle, CityWeather } from "../styles/custom.js";
 import ForecastService from "../services/ForecastService.js";
 
