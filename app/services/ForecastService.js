@@ -4,14 +4,14 @@ import axios from 'axios';
 class ForecastService {
   static async getCitiesWeather() {
     let citiesForecastData = [];
-    let citiesData;
+    let citiesData = [];
     const citiesWeather = Constants.TARGETCITIES.map(async (city) => {
       if (this.getCityForecastData(city)) citiesForecastData.push(await this.getCityForecastData(city))
       if(citiesForecastData.length === Constants.TARGETCITIES.length) {
         return this.getNormalizedCities(citiesForecastData);
       }
     });
-    //Await and get data from API 
+    //Await and get data from API
     if(await Promise.all(citiesWeather)) {
       const citiesWeatherData = await Promise.all(citiesWeather);
       if(citiesWeatherData.length > 0) {
