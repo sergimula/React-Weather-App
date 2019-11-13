@@ -1,11 +1,11 @@
-# Project Title
+# Small City forecast app
 
-Small City forecast app
+Small forecast application developed with react
 
 ## Getting Started
 
-npm install
-npm run start
+* npm install
+* npm run start
 
 And get the weather!
 
@@ -24,4 +24,4 @@ node installed in your pc
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License
