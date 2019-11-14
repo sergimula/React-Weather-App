@@ -4,7 +4,7 @@ import ForecastService from "../services/ForecastService.js";
 import { Link } from 'react-router-dom';
 
 class Cities extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
       load: false,
@@ -17,6 +17,15 @@ class Cities extends React.Component {
       load: true,
       cities: await ForecastService.getCitiesWeather()
     })
+
+    //Update city time
+    if(this.state.load) {
+      setInterval(async () => {
+        await this.setStateAsync({
+          cities: await ForecastService.getCitiesWeather()
+        })
+      }, 60000);
+    }
   }
 
   setStateAsync(state) {
