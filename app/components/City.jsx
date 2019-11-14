@@ -34,11 +34,11 @@ class City extends React.Component {
                 <DetailCityTitle>{this.state.cityWeatherData.name}</DetailCityTitle>
                 <CityWeather>
                   <p>Actual temperature:
-                  {Math.round(this.state.cityWeatherData.main.temp - 273.15)}ºC</p>
-                  <p>Maximum temperature: 
-                  {Math.round(this.state.cityWeatherData.main.temp_max - 273.15)}ºC</p>
+                  {ForecastService.getTemperatureAsCelsius(this.state.cityWeatherData.main.temp)}ºC</p>
+                  <p>Maximum temperature:
+                  {ForecastService.getTemperatureAsCelsius(this.state.cityWeatherData.main.temp_max)}ºC</p>
                   <p>Minimum temperature:
-                  {Math.round(this.state.cityWeatherData.main.temp_min - 273.15)}ºC</p>
+                  {ForecastService.getTemperatureAsCelsius(this.state.cityWeatherData.main.temp_min)}ºC</p>
                 </CityWeather>
               </div>
           ) : (

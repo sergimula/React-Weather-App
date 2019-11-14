@@ -7,20 +7,25 @@ class ForecastService {
     let citiesData = [];
     const citiesWeather = Constants.TARGETCITIES.map(async (city) => {
       if (this.getCityForecastData(city)) citiesForecastData.push(await this.getCityForecastData(city))
-      if(citiesForecastData.length === Constants.TARGETCITIES.length) {
+      if (citiesForecastData.length === Constants.TARGETCITIES.length) {
         return this.getNormalizedCities(citiesForecastData);
       }
     });
     //Await and get data from API
-    if(await Promise.all(citiesWeather)) {
+    if (await Promise.all(citiesWeather)) {
       const citiesWeatherData = await Promise.all(citiesWeather);
-      if(citiesWeatherData.length > 0) {
+      if (citiesWeatherData.length > 0) {
         citiesWeatherData.map((data) => {
-          if(data) citiesData = data;
+          if (data) citiesData = data;
         });
       }
     }
-    return citiesData;
+    //Return ordered list by name
+    return citiesData.sort((a, b) => {
+      if (a.name < b.name) return -1;
+      if (a.name > b.name) return 1;
+      return 0;
+    });
   }
 
   static async getCityWeather(cityName) {
@@ -30,7 +35,8 @@ class ForecastService {
 
   static async getCityForecastData(city) {
     try {
-      let call = 'https://api.openweathermap.org/data/2.5/weather?lat=' + city.latitude + '&lon=' + city.longitude + '&appid=' + Constants.APIKEY;
+      const apiurl = 'https://api.openweathermap.org/data/2.5/weather?';
+      const call = apiurl + 'lat=' + city.latitude + '&lon=' + city.longitude + '&appid=' + Constants.APIKEY;
       const response = await axios.get(call);
       return response.data;
     } catch (error) {
@@ -60,6 +66,10 @@ class ForecastService {
       }
     })
     return cleanCitiesForecast;
+  }
+
+  static getTemperatureAsCelsius(temp) {
+    return Math.round(temp - 273.15);
   }
 }
 
