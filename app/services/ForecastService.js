@@ -21,11 +21,7 @@ class ForecastService {
       }
     }
     //Return ordered list by name
-    return citiesData.sort((a, b) => {
-      if (a.name < b.name) return -1;
-      if (a.name > b.name) return 1;
-      return 0;
-    });
+    return citiesData.sort((a, b) => a.name.localeCompare(b.name))
   }
 
   static async getCityWeather(cityName) {
