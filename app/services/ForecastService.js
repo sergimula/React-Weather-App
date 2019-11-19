@@ -12,8 +12,8 @@ class ForecastService {
       }
     });
     //Await and get data from API
-    if (await Promise.all(citiesWeather)) {
-      const citiesWeatherData = await Promise.all(citiesWeather);
+    const citiesWeatherData = await Promise.all(citiesWeather);
+    if (citiesWeatherData) {
       if (citiesWeatherData.length > 0) {
         citiesWeatherData.map((data) => {
           if (data) citiesData = data;
